@@ -1278,6 +1278,7 @@ ol {
 }
 
 
+```css
 /* ============================================================
    18. ABOUT
    ============================================================ */
@@ -1289,20 +1290,29 @@ ol {
 
 .about-grid {
     display: grid;
+
     grid-template-columns:
         minmax(0, 0.9fr)
         minmax(0, 1.1fr);
 
-    align-items: center;
+    align-items: start;
+
     gap: 90px;
 }
 
+
+/* ============================================================
+   ABOUT IMAGE
+   ============================================================ */
 
 .about-image-wrap {
     position: relative;
 
     padding-right: 25px;
     padding-bottom: 25px;
+
+    position: sticky;
+    top: 110px;
 }
 
 
@@ -1325,6 +1335,7 @@ ol {
     content: "";
 
     position: absolute;
+
     inset: 0;
 
     background:
@@ -1349,15 +1360,22 @@ ol {
 }
 
 
-.about-image-wrap:hover .about-image-frame img {
+.about-image-wrap:hover
+.about-image-frame img {
     transform: scale(1.04);
 }
 
 
+/* ============================================================
+   EXPERIENCE CARD
+   ============================================================ */
+
 .experience-card {
     position: absolute;
+
     right: 0;
     bottom: 0;
+
     z-index: 3;
 
     min-width: 190px;
@@ -1378,7 +1396,9 @@ ol {
     display: block;
 
     font-family: var(--heading-font);
+
     font-size: 26px;
+
     line-height: 1;
 }
 
@@ -1389,24 +1409,46 @@ ol {
     margin-top: 5px;
 
     font-size: 10px;
+
     font-weight: 800;
+
     letter-spacing: 1px;
+
     text-transform: uppercase;
 }
 
 
+/* ============================================================
+   GOLD CORNER
+   ============================================================ */
+
 .gold-corner {
     position: absolute;
+
     left: -13px;
     top: 25px;
 
     width: 80px;
     height: 80px;
 
-    border-left: 3px solid var(--gold-400);
-    border-top: 3px solid var(--gold-400);
+    border-left:
+        3px solid
+        var(--gold-400);
+
+    border-top:
+        3px solid
+        var(--gold-400);
 
     z-index: 2;
+}
+
+
+/* ============================================================
+   ABOUT CONTENT
+   ============================================================ */
+
+.about-content {
+    min-width: 0;
 }
 
 
@@ -1414,8 +1456,12 @@ ol {
     color: var(--text);
 
     font-size: 17px;
+
     font-weight: 500;
+
     line-height: 1.8;
+
+    margin-bottom: 25px;
 }
 
 
@@ -1425,33 +1471,68 @@ ol {
     color: var(--text-light);
 
     font-size: 14px;
+
+    line-height: 1.8;
 }
 
 
-.about-points {
-    display: grid;
-    gap: 18px;
+/* ============================================================
+   ABOUT SECTION EYEBROW
+   ============================================================ */
 
-    margin-top: 30px;
+.about-content .section-eyebrow {
+    margin-top: 28px;
+
+    margin-bottom: 10px;
 }
 
 
-.about-point {
+.about-content .section-eyebrow:first-child {
+    margin-top: 0;
+}
+
+
+/* ============================================================
+   ABOUT LIST
+   ============================================================ */
+
+.about-section .about-list {
+    list-style: none;
+
+    margin: 18px 0 28px;
+
+    padding: 0;
+}
+
+
+.about-section .about-list li {
     display: flex;
-    gap: 14px;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.7;
 }
 
 
-.about-point > span {
-    width: 29px;
-    height: 29px;
+.about-section .about-list li i {
+    width: 23px;
+    height: 23px;
 
     display: grid;
+
     place-items: center;
 
     flex-shrink: 0;
 
-    margin-top: 3px;
+    margin-top: 2px;
 
     color: var(--gold-600);
 
@@ -1459,7 +1540,87 @@ ol {
 
     border-radius: 50%;
 
-    font-size: 11px;
+    font-size: 10px;
+}
+
+
+.about-section .about-list li span {
+    flex: 1;
+}
+
+
+/* ============================================================
+   WHAT WE DO / ABOUT POINTS
+   ============================================================ */
+
+.about-points {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    margin-bottom: 30px;
+}
+
+
+.about-point {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 13px;
+
+    padding: 18px;
+
+    background: rgba(228,191,82,0.035);
+
+    border:
+        1px solid
+        rgba(228,191,82,0.14);
+
+    border-radius: 4px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.about-point:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(228,191,82,0.35);
+
+    box-shadow:
+        0 10px 25px
+        rgba(5,11,24,0.06);
+}
+
+
+.about-point > span {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    margin-top: 1px;
+
+    color: var(--gold-600);
+
+    background: var(--gold-100);
+
+    border-radius: 50%;
+
+    font-size: 13px;
 }
 
 
@@ -1469,21 +1630,72 @@ ol {
     color: var(--navy-900);
 
     font-size: 13px;
+
+    line-height: 1.4;
 }
 
 
 .about-point p {
-    margin-top: 3px;
+    margin-top: 5px;
 
     color: var(--text-light);
 
     font-size: 12px;
+
+    line-height: 1.65;
 }
 
 
-.text-link {
+/* ============================================================
+   VISION BOX
+   ============================================================ */
+
+.about-vision-box {
+    position: relative;
+
+    margin-top: 30px;
+
+    padding: 22px 24px;
+
+    background:
+        rgba(228,191,82,0.055);
+
+    border-left:
+        3px solid
+        var(--gold-400);
+
+    border-radius:
+        0 4px 4px 0;
+}
+
+
+.about-vision-box p {
+    margin: 0;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+.about-vision-box strong {
+    color: var(--navy-900);
+
+    font-weight: 800;
+}
+
+
+/* ============================================================
+   ABOUT CTA
+   ============================================================ */
+
+.about-section .text-link {
     display: inline-flex;
+
     align-items: center;
+
     gap: 9px;
 
     margin-top: 30px;
@@ -1491,22 +1703,237 @@ ol {
     color: var(--navy-800);
 
     font-size: 12px;
+
     font-weight: 800;
 
-    border-bottom: 1px solid var(--gold-400);
+    border-bottom:
+        1px solid
+        var(--gold-400);
 }
 
 
-.text-link i {
+.about-section .text-link i {
     color: var(--gold-600);
 
     transition: var(--transition);
 }
 
 
-.text-link:hover i {
+.about-section .text-link:hover {
+    color: var(--navy-900);
+}
+
+
+.about-section .text-link:hover i {
     transform: translateX(5px);
 }
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .about-grid {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+
+    .about-image-wrap {
+        position: relative;
+
+        top: auto;
+
+        max-width: 650px;
+
+        width: 100%;
+
+        margin: 0 auto;
+    }
+
+
+    .about-image-frame {
+        min-height: 480px;
+    }
+
+
+    .about-image-frame img {
+        min-height: 480px;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .about-grid {
+        gap: 40px;
+    }
+
+
+    .about-image-wrap {
+        padding-right: 15px;
+
+        padding-bottom: 20px;
+    }
+
+
+    .about-image-frame {
+        min-height: 390px;
+    }
+
+
+    .about-image-frame img {
+        min-height: 390px;
+    }
+
+
+    .experience-card {
+        min-width: 155px;
+
+        padding: 15px 17px;
+    }
+
+
+    .experience-card strong {
+        font-size: 21px;
+    }
+
+
+    .experience-card span {
+        font-size: 8px;
+
+        letter-spacing: 0.8px;
+    }
+
+
+    .gold-corner {
+        left: -7px;
+
+        top: 18px;
+
+        width: 60px;
+
+        height: 60px;
+    }
+
+
+    .about-content .lead {
+        font-size: 15px;
+
+        line-height: 1.75;
+    }
+
+
+    .about-content > p:not(.lead) {
+        font-size: 13px;
+
+        line-height: 1.75;
+    }
+
+
+    .about-content .section-eyebrow {
+        margin-top: 24px;
+    }
+
+
+    .about-section .about-list li {
+        gap: 10px;
+
+        font-size: 13px;
+
+        line-height: 1.65;
+    }
+
+
+    .about-points {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .about-point {
+        padding: 15px;
+    }
+
+
+    .about-point > span {
+        width: 36px;
+
+        height: 36px;
+
+        font-size: 12px;
+    }
+
+
+    .about-point strong {
+        font-size: 13px;
+    }
+
+
+    .about-point p {
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+
+    .about-vision-box {
+        padding: 18px;
+    }
+
+
+    .about-vision-box p {
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+}
+
+
+/* ============================================================
+   VERY SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+    .about-image-frame {
+        min-height: 340px;
+    }
+
+
+    .about-image-frame img {
+        min-height: 340px;
+    }
+
+
+    .experience-card {
+        min-width: 140px;
+
+        padding: 13px 15px;
+    }
+
+
+    .experience-card strong {
+        font-size: 19px;
+    }
+
+
+    .experience-card span {
+        font-size: 7px;
+    }
+
+}
+
 
 
 /* ============================================================
