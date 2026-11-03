@@ -6037,3 +6037,409 @@ select:focus-visible {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   LEGAL HELPING HANDS - PREMIUM OUR TEAM
+========================================= */
+
+.team-section {
+    width: 100%;
+    padding: 90px 0;
+    background: #f5f7fa;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-container {
+    width: 90%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* SECTION HEADING */
+
+.team-heading {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.team-heading h2 {
+    color: #10233f;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.team-heading h2::after {
+    content: "";
+    display: block;
+    width: 65px;
+    height: 4px;
+    background: #c49a45;
+    margin: 15px auto 0;
+    border-radius: 5px;
+}
+
+.team-heading p {
+    color: #687386;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 15px;
+}
+
+/* SLIDER */
+
+.team-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.team-slider.is-dragging {
+    cursor: grabbing;
+}
+
+.team-track {
+    display: flex;
+    width: max-content;
+    animation: teamScroll 60s linear infinite;
+    will-change: transform;
+}
+
+.team-group {
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    gap: 25px;
+    padding-right: 25px;
+}
+
+/* PAUSE ON HOVER */
+
+.team-slider:hover .team-track {
+    animation-play-state: paused;
+}
+
+.team-slider.is-dragging .team-track {
+    animation-play-state: paused !important;
+}
+
+/* PROFILE CARD */
+
+.team-card {
+    position: relative;
+    flex: 0 0 290px;
+    width: 290px;
+    padding: 12px;
+    overflow: hidden;
+    text-align: left;
+    background: #10233f;
+    border: 1px solid rgba(196,154,69,.45);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(16,35,63,.13);
+    box-sizing: border-box;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 38px rgba(16,35,63,.22);
+}
+
+/* MEMBER PHOTO */
+
+.team-card img {
+    display: block;
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 11px;
+    background: #e8eaf0;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+/* MEMBER NAME */
+
+.team-card h3 {
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 18px 8px 5px;
+}
+
+/* DESIGNATION */
+
+.team-card p {
+    color: #d2b36d;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 8px 16px;
+    line-height: 1.6;
+}
+
+/* VIEW PROFILE BUTTON */
+
+.team-view-btn {
+    display: inline-block;
+    margin: 0 8px 10px;
+    padding: 11px 20px;
+    color: #10233f;
+    background: #d1ad61;
+    border: 1px solid #d1ad61;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .4px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.team-view-btn:hover {
+    color: #ffffff;
+    background: transparent;
+    border-color: #d1ad61;
+    transform: translateY(-2px);
+}
+
+/* INFINITE SLIDER ANIMATION */
+
+@keyframes teamScroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* =========================================
+   TEAM MEMBER DETAILS POPUP
+========================================= */
+
+.team-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.team-modal.open {
+    display: flex;
+}
+
+.team-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5,15,30,.82);
+    backdrop-filter: blur(5px);
+}
+
+.team-modal-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 570px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 40px;
+    background: #ffffff;
+    border-top: 5px solid #c49a45;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    animation: teamModalOpen .3s ease;
+}
+
+@keyframes teamModalOpen {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.team-modal-content h2 {
+    color: #10233f;
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0 35px 10px 0;
+}
+
+.team-modal-content h4 {
+    color: #bd9140;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+#teamModalDetails {
+    color: #596273;
+    font-size: 15px;
+    line-height: 1.9;
+    white-space: pre-line;
+}
+
+.team-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 17px;
+    width: 38px;
+    height: 38px;
+    color: #10233f;
+    background: #f0f2f5;
+    border: none;
+    border-radius: 50%;
+    font-size: 27px;
+    line-height: 1;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.team-modal-close:hover {
+    color: #ffffff;
+    background: #10233f;
+    transform: rotate(90deg);
+}
+
+/* BODY LOCK */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .team-section {
+        padding: 70px 0;
+    }
+
+    .team-container {
+        width: 92%;
+    }
+
+    .team-heading h2 {
+        font-size: 36px;
+    }
+
+    .team-card {
+        flex-basis: 270px;
+        width: 270px;
+    }
+
+    .team-card img {
+        height: 290px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .team-section {
+        padding: 55px 0;
+    }
+
+    .team-container {
+        width: 94%;
+    }
+
+    .team-heading {
+        margin-bottom: 35px;
+    }
+
+    .team-heading h2 {
+        font-size: 30px;
+    }
+
+    .team-heading p {
+        font-size: 14px;
+    }
+
+    .team-group {
+        gap: 16px;
+        padding-right: 16px;
+    }
+
+    .team-card {
+        flex-basis: 255px;
+        width: 255px;
+        padding: 10px;
+        border-radius: 13px;
+    }
+
+    .team-card img {
+        height: 270px;
+    }
+
+    .team-card h3 {
+        font-size: 19px;
+    }
+
+    .team-modal-content {
+        padding: 32px 23px;
+    }
+
+    .team-modal-content h2 {
+        font-size: 23px;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    .team-track {
+        animation: none !important;
+    }
+
+    .team-card,
+    .team-view-btn {
+        transition: none;
+    }
+}
+
