@@ -1854,3 +1854,187 @@ console.log(
 /* ============================================================
    END OF SCRIPT.JS
    ============================================================ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function initTeamSection() {
+    const track = document.querySelector(".team-track");
+    const group = document.querySelector(".team-group");
+    const slider = document.querySelector(".team-slider");
+    const modal = document.querySelector("#teamModal");
+
+    if (!track || !group || !slider || !modal) return;
+
+    // Prevent duplicate initialization
+    if (track.dataset.initialized === "true") return;
+    track.dataset.initialized = "true";
+
+    // INFINITE SLIDER DUPLICATE
+    const duplicate = group.cloneNode(true);
+    duplicate.setAttribute("aria-hidden", "true");
+
+    duplicate.querySelectorAll("button, a").forEach(element => {
+        element.setAttribute("tabindex", "-1");
+    });
+
+    track.appendChild(duplicate);
+
+    // TEAM DETAILS POPUP
+    const modalName = modal.querySelector("#teamModalName");
+    const modalRole = modal.querySelector("#teamModalRole");
+    const modalDetails = modal.querySelector("#teamModalDetails");
+
+    function closeTeamModal() {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+    }
+
+    track.addEventListener("click", function(event) {
+        const button = event.target.closest(".team-view-btn");
+
+        if (!button || button.closest(".team-group") !== group) return;
+
+        if (!modalName || !modalRole || !modalDetails) return;
+
+        modalName.textContent = button.dataset.name || "";
+        modalRole.textContent = button.dataset.role || "";
+        modalDetails.textContent = button.dataset.details || "";
+
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+    });
+
+    const closeButton = modal.querySelector(".team-modal-close");
+    const overlay = modal.querySelector(".team-modal-overlay");
+
+    if (closeButton) {
+        closeButton.addEventListener("click", closeTeamModal);
+    }
+
+    if (overlay) {
+        overlay.addEventListener("click", closeTeamModal);
+    }
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            closeTeamModal();
+        }
+    });
+
+    // MOUSE DRAG AND MOBILE SWIPE
+    let isDragging = false;
+    let startX = 0;
+    let startTime = 0;
+    let moved = false;
+    let suppressClick = false;
+    let animation = null;
+
+    slider.addEventListener("pointerdown", function(event) {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+
+        animation = track.getAnimations().find(item =>
+            item.effect && item.effect.getTiming().duration !== "auto"
+        );
+
+        if (!animation) return;
+
+        isDragging = true;
+        moved = false;
+        startX = event.clientX;
+
+        animation.pause();
+        startTime = Number(animation.currentTime) || 0;
+
+        slider.classList.add("is-dragging");
+
+        try {
+            slider.setPointerCapture(event.pointerId);
+        } catch (error) {
+            isDragging = false;
+        }
+    });
+
+    slider.addEventListener("pointermove", function(event) {
+        if (!isDragging || !animation) return;
+
+        const distanceMoved = event.clientX - startX;
+
+        if (Math.abs(distanceMoved) > 5) {
+            moved = true;
+        }
+
+        const duration = Number(animation.effect.getTiming().duration);
+        const totalDistance = group.getBoundingClientRect().width;
+
+        if (!duration || !totalDistance) return;
+
+        let newTime =
+            startTime - (distanceMoved / totalDistance) * duration;
+
+        newTime = ((newTime % duration) + duration) % duration;
+
+        animation.currentTime = newTime;
+    });
+
+    function stopDragging() {
+        if (!isDragging) return;
+
+        isDragging = false;
+        slider.classList.remove("is-dragging");
+
+        if (moved) {
+            suppressClick = true;
+        }
+
+        if (animation) {
+            animation.play();
+        }
+
+        animation = null;
+
+        setTimeout(() => {
+            suppressClick = false;
+        }, 250);
+    }
+
+    slider.addEventListener("pointerup", stopDragging);
+    slider.addEventListener("pointercancel", stopDragging);
+    slider.addEventListener("lostpointercapture", stopDragging);
+
+    // PREVENT CLICK AFTER DRAG
+    track.addEventListener("click", function(event) {
+        if (suppressClick) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            suppressClick = false;
+        }
+    }, true);
+}
